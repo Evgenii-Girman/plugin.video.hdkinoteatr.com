@@ -26,9 +26,9 @@ addon_author  = Addon.getAddonInfo('author')
 addon_name    = Addon.getAddonInfo('name')
 addon_version = Addon.getAddonInfo('version')
 
-VERSION = '4.3as'
+VERSION = '1.0'
 DOMAIN = '131896016'
-GATrack='UA-30985824-2'
+GATrack= 'UA-46039715-1' #'UA-30985824-2'
 try:
     import platform
     xbmcver=xbmc.getInfoLabel( "System.BuildVersion" ).replace(' ','_').replace(':','_')
@@ -290,6 +290,8 @@ def get_movies(params):
     beautifulSoup = BeautifulSoup(http)
     
     t=re.findall('<h1 class="btl">(.+?)<span',str(beautifulSoup))
+    if not t:
+       t=re.findall('<h1 class="btl">(.+?)</h1>',str(beautifulSoup))
     _m=re.findall('<div id="vid">[^\b]+',str(beautifulSoup))
     m=re.findall('makePlayer\(\'(.+?)\'\)',str(_m[0]))
     
@@ -299,9 +301,10 @@ def get_movies(params):
     if not m:
 	_k = re.findall('vkArr=(.+)\;',_m[0])
 	_h = json.loads(_k[0])
+	print str(_h)
 	m = []
 	for _p in _h:
-	  if _p['playlist']:
+	  if 'playlist' in _p: #_p['playlist']:
 	     for _u in _p['playlist']:
 	       m.append([_u['comment'].replace('&lt;br&gt;',' '),_u['file']]) 
 	  else:

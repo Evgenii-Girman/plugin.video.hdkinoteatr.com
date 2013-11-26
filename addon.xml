@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.hdkinoteatr.ru"
        name="hdkinoteatr.ru"
-       version="1.0.0"
+       version="0.0.1"
        provider-name="Girman Evgeniy">
   <requires>
     <import addon="xbmc.python" version="1.0"/>
